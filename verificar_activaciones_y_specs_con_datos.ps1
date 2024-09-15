@@ -1,3 +1,4 @@
+
 # Comprobar si el script se está ejecutando con permisos de administrador
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
     # Si no tiene permisos de administrador, reiniciar con permisos elevados
