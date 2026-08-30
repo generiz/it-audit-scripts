@@ -1,51 +1,53 @@
-# Scripts de Auditoría de TI
+# Windows Inventory Scripts
 
-Este repositorio contiene scripts para realizar auditorías de sistemas en equipos con Windows. Los scripts están diseñados para recopilar información del sistema, verificar activaciones de software y ayudar a los administradores a mantener su infraestructura de manera eficiente.
+Small PowerShell utility for collecting hardware and activation information from Windows machines during IT support and inventory work.
 
-## Archivos Incluidos
+**Status:** operations tool. It is not an endpoint-management platform, compliance scanner or security-audit suite.
 
-- **`system_audit_script.ps1`**: Un script de PowerShell que recopila detalles del sistema, como el nombre del host, versión del sistema operativo, especificaciones de la CPU, ranuras de RAM, detalles del disco y verifica el estado de activación de Windows y Microsoft Office.
-- **`iniciar.bat`**: Un archivo por lotes para iniciar la ejecución del script.
+## What it collects
 
-## Funcionalidades
+`system_audit_script.ps1` records information such as:
 
-- **Recopilación de Información del Sistema**: Obtiene detalles como el nombre del host, la versión del sistema operativo, las especificaciones de la CPU, la RAM y la información del disco.
-- **Verificación de Activación de Windows**: Verifica si Windows está activado legalmente.
-- **Verificación de Activación de Microsoft Office**: Comprueba el estado de activación de Microsoft Office y su versión.
-- **Salida de Resultados**: Guarda la información recopilada en un archivo de texto ubicado en la carpeta "Resultados".
+- hostname and Windows version
+- CPU information
+- RAM slots and installed memory
+- disk information
+- Windows activation state
+- Microsoft Office version and activation state
+- operator-supplied inventory context such as machine number, model, area and user
 
-## Requisitos Previos
+Results are written to the local `Resultados` directory.
 
-- **Windows PowerShell**: El script está diseñado para ejecutarse en PowerShell en sistemas Windows.
-- **Privilegios de Administrador**: El script debe ejecutarse con privilegios de administrador para recopilar toda la información necesaria.
+## Requirements
 
-## Uso
+- Windows
+- Windows PowerShell
+- Administrator privileges for complete collection
 
-1. Clonar el Repositorio: 
-   ```sh
-   git clone https://github.com/generiz/it-audit-scripts.git
-   
-2. Ejecutar el Archivo por Lotes:
+## Use
 
-Haz doble clic en iniciar.bat para iniciar el script de PowerShell.
-3. Seguir las Instrucciones en Pantalla:
+Clone the repository:
 
-Introduce los detalles requeridos cuando se te solicite (número de máquina, modelo/marca, área de trabajo, nombre del usuario).
-4. Revisar los Resultados:
+```powershell
+git clone https://github.com/generiz/it-audit-scripts.git
+```
 
-Los resultados se guardarán en un archivo de texto dentro de la carpeta "Resultados" en el directorio del script.
+Run `iniciar.bat`, follow the prompts and review the generated text file under `Resultados`.
 
-Nota de Seguridad
-Asegúrate de ejecutar el script en un entorno seguro, ya que recopila información sensible del sistema.
-Mantén los archivos de salida protegidos y seguros, especialmente si se almacenan en sistemas compartidos o en red.
+## Data handling
 
-Contribuciones
-¡Las contribuciones, reportes de errores y solicitudes de nuevas funcionalidades son bienvenidas! No dudes en revisar la página de issues.
+The generated output can contain system and user information that should be treated as operationally sensitive. Do not publish result files or leave them in shared locations without an explicit reason.
 
-Licencia
-Este proyecto está licenciado bajo la Licencia GNU GPL v3 - consulta el archivo LICENSE para más detalles.
+The script reads local system information; it does not provide continuous monitoring, remote collection, vulnerability scanning or centralized reporting.
 
-Autor
-Desarrollado por Nicolás Pintos - www.nicolaspintos.com
+## Files
 
+```text
+system_audit_script.ps1   inventory and activation collection
+iniciar.bat               launcher
+Resultados/               generated local output
+```
 
+## License
+
+GPL-3.0
